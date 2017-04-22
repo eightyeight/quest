@@ -24,7 +24,7 @@ class PaymentReport extends report
         ]);
 
         $this->data = $dbConnection->query("
-            SELECT strftime('%Y-%m', p.finish_time) AS month_year, COUNT(p.id) AS payments, SUM(amount) AS sum
+            SELECT strftime('%m', p.finish_time) || '.' || substr(strftime('%Y', p.finish_time),3, 2) AS month_year, COUNT(p.id) AS payments, SUM(amount) AS sum
             FROM payments p
                 LEFT JOIN documents d ON d.payment_id = p.id
                 WHERE d.id IS NULL
@@ -43,6 +43,8 @@ class PaymentReport extends report
                 header('Content-Disposition: attachment; filename=data.csv');
 
                 $output = fopen('php://output', 'w');
+
+                fputcsv($output, ["мм.гг","количество платежей","сумма"], "\t");
                 foreach($this->data as $row) {
                     fputcsv($output, $row, "\t");
                 }
