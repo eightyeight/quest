@@ -1,5 +1,9 @@
 <?php
 
+namespace Quest;
+
+use PDO;
+
 class dataSource
 {
     private $databaseConnection;

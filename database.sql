@@ -1,5 +1,5 @@
-DROP TABLE documents;
-DROP TABLE payments;
+DROP TABLE IF EXISTS documents;
+DROP TABLE IF EXISTS payments;
 
 CREATE TABLE "documents" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,

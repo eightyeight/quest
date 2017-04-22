@@ -1,5 +1,7 @@
 <?php
 
+namespace Quest;
+
 abstract class report
 {
     //данные для отчета
